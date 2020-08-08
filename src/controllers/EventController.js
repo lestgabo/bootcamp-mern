@@ -53,4 +53,15 @@ module.exports = {
             return res.status(400).json({ message: `We don't have any ${sport} events yet!` });
         }
     },
+
+    async delete(req, res) {
+        const { eventId } = req.params;
+
+        try {
+            await Event.findByIdAndDelete(eventId);
+            return res.status(204).send();
+        } catch (error) {
+            return res.status(400).json({ message: 'We do not have any event with this ID.' });
+        }
+    },
 };
