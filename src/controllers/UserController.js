@@ -38,4 +38,17 @@ module.exports = {
             });
         }
     },
+
+    async getUsers(req, res) {
+        try {
+            const users = await User.find({});
+            if (users) {
+                return res.json(users);
+            }
+        } catch (error) {
+            return res.status(400).json({
+                message: `There are no users yet. Do you want to create a user?`,
+            });
+        }
+    },
 };

@@ -29,6 +29,7 @@ routes.delete('/event/:eventId', EventController.delete);
 
 // User
 routes.get('/user/:userId', UserController.getUserById);
+routes.get('/users', UserController.getUsers);
 routes.post('/user/register', UserController.createUser);
 
 module.exports = routes;
