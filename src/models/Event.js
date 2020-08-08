@@ -6,6 +6,7 @@ const EventSchema = new mongoose.Schema(
         description: String,
         price: Number,
         thumbnail: String,
+        sport: String, // allows for filter by sport
         date: Date,
         user: {
             type: mongoose.Schema.Types.ObjectId,
