@@ -2,7 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
-const UserController = require('./controllers/UserController');
+
+const routes = require('./routes');
 
 const PORT = process.env.port || 8000;
 
@@ -12,12 +13,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 app.use(cors());
 app.use(express.json());
-
-app.get('/', (req, res) => {
-    res.send('Hello from nodemon.');
-});
-
-app.post('/register', UserController.store);
+app.use(routes);
 
 try {
     mongoose.connect(process.env.MONGO_DB_CONNECTION, {
