@@ -14,6 +14,7 @@ routes.get('/', (req, res) => {
 
 // Event
 routes.post('/event', upload.single('thumbnail'), EventController.createEvent);
+routes.get('/event/:eventId', EventController.getEventById);
 
 // User
 routes.post('/user/register', UserController.createUser);
