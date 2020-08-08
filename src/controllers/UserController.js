@@ -26,15 +26,15 @@ module.exports = {
         }
     },
 
-    async getUserByID(req, res) {
-        const { userID } = req.params;
+    async getUserById(req, res) {
+        const { userId } = req.params;
 
         try {
-            const user = await User.findById(userID);
+            const user = await User.findById(userId);
             return res.json(user);
         } catch (error) {
             return res.status(400).json({
-                message: 'User ID does not exist. Do you want to register instead?',
+                message: 'User Id does not exist. Do you want to register instead?',
             });
         }
     },
