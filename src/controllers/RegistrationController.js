@@ -24,14 +24,12 @@ module.exports = {
     },
 
     async getRegistrationById(req, res) {
-        const { user_id } = req.headers;
         const { registrationId } = req.params;
 
         try {
             const registration = await Registration.findById(registrationId);
-            const registeringUser = registration.user.toString();
 
-            if (registration && registeringUser === user_id) {
+            if (registration) {
                 await registration.populate('event').populate({ path: 'user', select: '-password -email' }).execPopulate();
                 return res.json(registration);
             } else {
