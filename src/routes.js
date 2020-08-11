@@ -7,6 +7,8 @@ const EventController = require('./controllers/EventController');
 const DashboardController = require('./controllers/DashboardController');
 const LoginController = require('./controllers/LoginController');
 const RegistrationController = require('./controllers/RegistrationController');
+const ApprovalController = require('./controllers/ApprovalController');
+const RejectionController = require('./controllers/RejectionController');
 
 const routes = express.Router();
 const upload = multer(uploadConfig);
@@ -15,16 +17,11 @@ routes.get('/status', (req, res) => {
     res.send({ status: 200 });
 });
 
-// TODO: Subsriber Controller -> user creates a request to the event, event owner receives request to approve or reject
-
-// TODO: Registration controller
-// TODO: get a Registration by ID - RegistrationController
-// TODO: Registation Approval Controller
-// TODO: Registration Rejection Controller
-
 // Registration
-routes.post('/registration/:eventId', RegistrationController.create);
 routes.get('/registration/:registrationId', RegistrationController.getRegistrationById);
+routes.post('/registration/:eventId', RegistrationController.create);
+routes.post('/registration/:registrationId/approvals', ApprovalController.approval);
+routes.post('/registration/:registrationId/rejections', RejectionController.rejection);
 
 // Login
 routes.post('/login', LoginController.store);
