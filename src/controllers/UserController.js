@@ -15,7 +15,12 @@ module.exports = {
                     password: hashedPassword,
                     email,
                 });
-                return res.json(user);
+                return res.json({
+                    firstName: user.firstName,
+                    lastName: user.lastName,
+                    email: user.email,
+                    _id: user.id,
+                });
             }
 
             return res.status(400).json({
